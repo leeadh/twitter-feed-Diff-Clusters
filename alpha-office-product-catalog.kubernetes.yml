@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: product-catalog-app-container
-        image: leexha/alpha-office-product-catalog-sit
+        image: leexha/alpha-office-product-catalog-test
         imagePullPolicy: Always
         ports:
         - name: pc-app-port
@@ -36,7 +36,7 @@ metadata:
 spec:
   ports:
   - port: 30000
-    nodePort: 31387
+    nodePort: 32411
     targetPort: 80
   selector:
     app: product-catalog-app

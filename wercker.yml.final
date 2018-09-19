@@ -1,4 +1,4 @@
-#Use OpenJDK base docker image from dockerhub and open the application port on the docker containers
+#Use OpenJDK base docker image from dockerhub and open the application port on the docker container
 box:
   id: openjdk
   ports:
@@ -51,16 +51,16 @@ deploy-to-cluster:
         server: $KUBERNETES_MASTER
         token: $KUBERNETES_TOKEN
         insecure-skip-tls-verify: true
-        command: delete secret okeworkshop --namespace=$NSSIT --ignore-not-found=true
+        command: delete secret okeworkshop --namespace=$NSTEST --ignore-not-found=true
     - kubectl:
         name: create OCR secret
         server: $KUBERNETES_SERVER
         token: $KUBERNETES_TOKEN
         insecure-skip-tls-verify: true
-        command: create secret docker-registry okeworkshop --docker-server=iad.ocir.io --docker-username=$DOCKER_USERNAME --docker-password="$DOCKER_PASSWORD" --docker-email=${WERCKER_APPLICATION+OWNER_NAME}@mail.com --namespace="$NSSIT"
+        command: create secret docker-registry okeworkshop --docker-server=iad.ocir.io --docker-username=$DOCKER_USERNAME --docker-password="$DOCKER_PASSWORD" --docker-email=${WERCKER_APPLICATION+OWNER_NAME}@mail.com --namespace="$NSTEST"
     - kubectl:
         name: deploy to kubernetes
         server: $KUBERNETES_MASTER
         token: $KUBERNETES_TOKEN
         insecure-skip-tls-verify: true
-        command: apply -f ./alpha-office-product-catalog.kubernetes.yml --namespace==$NSSIT
+        command: apply -f ./alpha-office-product-catalog.kubernetes.yml --namespace=$NSTEST
